@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/peg_solitaire_menu_bar"
+        android:title="Peg Solitaire"></item>
+    <item
+        android:id="@+id/settings_menu_bar"
+    android:title="Settings"></item>
+    <item
+        android:id="@+id/help_menu_bar"
+        android:title="Help"></item>
+
+    </menu>
