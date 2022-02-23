@@ -1,9 +1,10 @@
-package com.cifpfbmoll.gamecenter;
+package com.cifpfbmoll.game2048;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.util.Log;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -12,13 +13,25 @@ public class Animator2048 {
 
 
     private Game2048Activity game2048;
-    private final float movementDistance=243f;
+    private int gridWidth;
+    private int gridHeight;
+    private float movementDistance;
     private final int movementDuration=150;
     private final int joinDuration=75;
+    private int movementDivisor;
 
 
-    public Animator2048(Game2048Activity game2048) {
+    public Animator2048(Game2048Activity game2048, int tableSize) {
         this.game2048 = game2048;
+        this.movementDivisor=tableSize*2;
+    }
+
+    public void setGridWidth(int gridWidth) {
+        this.gridWidth = gridWidth;
+    }
+
+    public void setGridHeight(int gridHeight) {
+        this.gridHeight = gridHeight;
     }
 
     //metode que recorr sa matriu on hi ha ses anitgues posicions des objectes i crea s'animacio
@@ -26,6 +39,10 @@ public class Animator2048 {
     public ArrayList <Animator> animateMovememnts(Cell2048 [][] cells){
 
         ArrayList <Animator> anims=new ArrayList<>();
+
+        if (this.movementDistance!=((this.gridWidth + this.gridHeight) / movementDivisor)) {
+            this.movementDistance = ((this.gridWidth + this.gridHeight) / movementDivisor);
+        }
 
         for (int i=0; i< cells.length;i++){
             for (int j=0; j<cells[i].length;j++){

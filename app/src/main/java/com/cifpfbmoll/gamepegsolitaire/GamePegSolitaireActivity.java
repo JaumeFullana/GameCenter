@@ -1,4 +1,4 @@
-package com.cifpfbmoll.gamecenter;
+package com.cifpfbmoll.gamepegsolitaire;
 
 import android.content.Intent;
 import android.os.Build;
@@ -16,34 +16,56 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.cifpfbmoll.game2048.Game2048Activity;
+import com.cifpfbmoll.gamecenter.R;
+import com.cifpfbmoll.Utils.Timer;
+import com.cifpfbmoll.Utils.TimerInterface;
+
 import java.text.SimpleDateFormat;
 
-public class GamePegSolitaireActivity extends AppCompatActivity {
+public class GamePegSolitaireActivity extends AppCompatActivity implements TimerInterface {
 
     private TablePegSolitaire table;
-    private boolean timerRunning;
-    private boolean timerStarted;
-    private long time;
+    private Button ballView;
+    private Button backButton;
+    private TextView ballCounter;
+    private TextView timerView;
+    private boolean started;
+    private Timer timer;
+    private int selectedMode;
 
     public TablePegSolitaire getTable() {
         return table;
     }
 
-    public void setTable(TablePegSolitaire table) {
-        this.table = table;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_peg_solitaire);
-        TablePegSolitaire table=new TablePegSolitaire();
-        table.initEnglishBoard();
+
+        selectedMode = 3;
+
+        if (selectedMode == 1) {
+            setContentView(R.layout.activity_game_peg_solitaire_english);
+            this.table = new TablePegSolitaire();
+            table.initEnglishBoard();
+        }
+        else if (selectedMode == 2) {
+            setContentView(R.layout.activity_game_peg_solitaire_german);
+            this.table = new TablePegSolitaire();
+            table.initGermanBoard();
+        }
+        else if (selectedMode == 3) {
+            setContentView(R.layout.activity_game_peg_solitaire_european);
+            this.table = new TablePegSolitaire();
+            table.initEuropeanBoard();
+        }
+
+        this.timerView = (TextView)findViewById(R.id.timerPeg);
+        this.backButton = ((Button)findViewById(R.id.backMovementButtonPegSolitaire));
         table.countBalls();
-        this.table=table;
-        this.timerRunning=true;
-        this.timerStarted=false;
-        TextView ballCounter=(TextView)findViewById(R.id.balls);
+        this.started = false;
+        this.timer = new Timer(this, true);
+        ballCounter = (TextView)findViewById(R.id.balls);
         ballCounter.setText(Integer.toString(this.table.getBalls()));
         this.addDragListeners(this.getTable());
         this.addTouchListeners();
@@ -63,12 +85,16 @@ public class GamePegSolitaireActivity extends AppCompatActivity {
         switch(item.getItemId()){
             case R.id.menu_bar_2048:
                 open2048();
+                finish();
                 break;
             case R.id.settings_menu_bar:
 
                 break;
             case R.id.help_menu_bar:
 
+                break;
+            case R.id.records:
+                openRecords();
                 break;
             default:
                 result=super.onOptionsItemSelected(item);
@@ -84,33 +110,17 @@ public class GamePegSolitaireActivity extends AppCompatActivity {
     public void addDragListeners(TablePegSolitaire table){
         for (int i=0;i<table.getCells().length;i++) {
             for (int j=0;j<table.getCells()[i].length;j++) {
-                int id = this.getResources().getIdentifier("f" +i+""+j,"id",this.getPackageName());
                 if(table.getCells()[i][j]!=-1) {
+                    int id = this.getResources().getIdentifier("f" +i+""+j,"id",this.getPackageName());
                     FrameLayout fl = findViewById(id);
                     fl.setOnDragListener(new View.OnDragListener() {
                         @Override
                         public boolean onDrag(View view, DragEvent dragEvent) {
-                            boolean correct=true;
-                            if (!timerStarted){
-                                long startTime=System.currentTimeMillis();
-                                TextView timer=(TextView)findViewById(R.id.timer);
-                                timerStarted=true;
-                                Thread thread=new Thread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        time=0;
-                                        while (timerRunning){
-                                            time=updateTimer(startTime, timer);
-                                            try {
-                                                Thread.sleep(31);
-                                            } catch (InterruptedException e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                    }
-                                });
-                                thread.start();
+                            if (!started){
+                                started=true;
+                                timer.start();
                             }
+                            boolean correct=true;
                             //get the view I saved on the local state when drag started(is a button)
                             View v = (View) dragEvent.getLocalState();
                             if (dragEvent.getAction() == DragEvent.ACTION_DROP) {
@@ -132,7 +142,7 @@ public class GamePegSolitaireActivity extends AppCompatActivity {
      * Method that set the onTouchListener on every ball (button) of the layout.
      */
     public void addTouchListeners(){
-        for (int i=1;i<33;i++){
+        for (int i=1;i<this.table.getHolesNumber();i++){
             int id = this.getResources().getIdentifier("b" +i,"id",this.getPackageName());
             Button b32=findViewById(id);
             b32.setOnTouchListener(new View.OnTouchListener() {
@@ -164,15 +174,16 @@ public class GamePegSolitaireActivity extends AppCompatActivity {
         if(ballPositionToDelete[0]!=-1) {
             correct=true;
             this.getTable().moveBall(oldPosition, newPosition, ballPositionToDelete);
-            TextView ballCounter=(TextView)findViewById(R.id.balls);
             ballCounter.setText(Integer.toString(this.table.getBalls()));
             fParent.removeView(v);
             fl.addView(v);
             FrameLayout intermediateFrame=this.getFrameLayout(ballPositionToDelete[0],ballPositionToDelete[1]);
+            this.ballView=(Button)intermediateFrame.getChildAt(0);
             intermediateFrame.removeView(intermediateFrame.getChildAt(0));
             int state=this.getTable().isFinished();
             if (state!=0){
-                this.timerRunning=false;
+                this.timer.pause();
+                this.backButton.setEnabled(false);
                 this.announceResult(state);
             }
         }
@@ -188,7 +199,7 @@ public class GamePegSolitaireActivity extends AppCompatActivity {
             resultado="Has perdido!";
         }
         SimpleDateFormat sdf=new SimpleDateFormat("mm:ss:SSS");
-        Toast toast=Toast.makeText(this,resultado+" tiempo: "+sdf.format(time),Toast.LENGTH_LONG);
+        Toast toast=Toast.makeText(this,resultado+" tiempo: "+sdf.format(this.timer.getTime()),Toast.LENGTH_LONG);
         toast.show();
     }
 
@@ -237,18 +248,16 @@ public class GamePegSolitaireActivity extends AppCompatActivity {
         return findViewById(id);
     }
 
-    public long updateTimer(long starTime, TextView timer){
-        long currentTime=System.currentTimeMillis()-starTime;
+    public void updateTimer(Long currentTime){
         SimpleDateFormat sdf=new SimpleDateFormat("mm:ss:SSS");
         runOnUiThread(new Runnable() {
             public void run() {
-                timer.setText(sdf.format(currentTime));
+                timerView.setText(sdf.format(currentTime));
             }
         });
-        return currentTime;
     }
 
-    public void openRecords(View view){
+    public void openRecords(){
         Intent intent=new Intent(this, RecordsPegSolitaireActivity.class);
         startActivity(intent);
     }
@@ -257,4 +266,53 @@ public class GamePegSolitaireActivity extends AppCompatActivity {
         Intent intent=new Intent(this, Game2048Activity.class);
         startActivity(intent);
     }
+
+    public void backMovement(View view){
+        if(this.getTable().getCellDeleted()!=null) {
+            this.getTable().redoMovement();
+            FrameLayout frameMovingBall = this.getFrameLayout(this.getTable().getCellAfterMovement()[0], this.getTable().getCellAfterMovement()[1]);
+            FrameLayout frameRecivingBall = this.getFrameLayout(this.getTable().getCellBeforeMovement()[0], this.getTable().getCellBeforeMovement()[1]);
+            FrameLayout frameRecreatingBall = this.getFrameLayout(this.getTable().getCellDeleted()[0], this.getTable().getCellDeleted()[1]);
+            Button button = (Button) frameMovingBall.getChildAt(0);
+            frameMovingBall.removeView(button);
+            frameRecivingBall.addView(button);
+            frameRecreatingBall.addView(this.ballView);
+            ballCounter.setText(Integer.toString(this.table.getBalls()));
+            this.backButton.setEnabled(false);
+        }
+    }
+
+    public void restartGame(View view){
+        if (selectedMode == 1) {
+            setContentView(R.layout.activity_game_peg_solitaire_english);
+            this.table = new TablePegSolitaire();
+            table.initEnglishBoard();
+        }
+        else if (selectedMode == 2) {
+            setContentView(R.layout.activity_game_peg_solitaire_german);
+            this.table = new TablePegSolitaire();
+            table.initGermanBoard();
+        }
+        else if (selectedMode == 3) {
+            setContentView(R.layout.activity_game_peg_solitaire_european);
+            this.table = new TablePegSolitaire();
+            table.initEuropeanBoard();
+        }
+        this.backButton = ((Button)findViewById(R.id.backMovementButtonPegSolitaire));
+        table.countBalls();
+        this.timerView=(TextView)findViewById(R.id.timerPeg);
+        this.started=false;
+        this.timer.stop();
+        this.timer=new Timer(this,true);
+        ballCounter=(TextView)findViewById(R.id.balls);
+        ballCounter.setText(Integer.toString(this.table.getBalls()));
+        this.addDragListeners(this.getTable());
+        this.addTouchListeners();
+    }
+
+    @Override
+    public void onTimeUpdated(long time) {
+        this.updateTimer(time);
+    }
+
 }

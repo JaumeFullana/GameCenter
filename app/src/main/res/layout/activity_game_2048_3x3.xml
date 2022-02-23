@@ -4,20 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Game2048Activity"
+    tools:context="com.cifpfbmoll.game2048.Game2048Activity"
     android:background="@color/boardBackground"
     android:animateLayoutChanges="true"
     >
 
+    <TextView
+        android:id="@+id/timer2048"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:text="00:00:000"
+        android:textColor="@color/brown"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
     <GridLayout
-        android:id="@+id/gridLayout"
+        android:id="@+id/gridLayout2048"
         android:layout_width="362dp"
         android:layout_height="362dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/grid_2048_background"
-        android:columnCount="4"
+        android:layout_marginTop="30dp"
+        android:background="@color/margins"
+        android:columnCount="3"
         android:padding="4dp"
-        android:rowCount="4"
+        android:rowCount="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,210 +38,120 @@
 
         <TextView
             android:id="@+id/p00"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:background="@color/gridBackground"
             android:gravity="center"
             android:text=""
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/p01"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:background="@color/gridBackground"
             android:gravity="center"
             android:text=""
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/p02"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:background="@color/gridBackground"
             android:gravity="center"
             android:text=""
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/p03"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="4dp"
-            android:background="@color/gridBackground"
-            android:gravity="center"
-            android:text=""
-            android:textSize="40dp"
-            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/p10"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:background="@color/gridBackground"
             android:gravity="center"
             android:text=""
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/p11"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:background="@color/gridBackground"
             android:gravity="center"
             android:text=""
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/p12"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:background="@color/gridBackground"
             android:gravity="center"
             android:text=""
-            android:textSize="40dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/p13"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="4dp"
-            android:background="@color/gridBackground"
-            android:gravity="center"
-            android:text=""
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/p20"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:background="@color/gridBackground"
             android:gravity="center"
             android:text=""
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/p21"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:background="@color/gridBackground"
             android:gravity="center"
             android:text=""
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/p22"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
             android:background="@color/gridBackground"
             android:gravity="center"
             android:text=""
-            android:textSize="40dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/p23"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="4dp"
-            android:background="@color/gridBackground"
-            android:gravity="center"
-            android:text=""
-            android:textSize="40dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/p30"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="4dp"
-            android:background="@color/gridBackground"
-            android:gravity="center"
-            android:text=""
-            android:textSize="40dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/p31"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="4dp"
-            android:background="@color/gridBackground"
-            android:gravity="center"
-            android:text=""
-            android:textSize="40dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/p32"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="4dp"
-            android:background="@color/gridBackground"
-            android:gravity="center"
-            android:text=""
-            android:textSize="40dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/p33"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="4dp"
-            android:background="@color/gridBackground"
-            android:gravity="center"
-            android:text=""
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold" />
 
 
@@ -238,8 +161,7 @@
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/img2048" />
@@ -280,15 +202,25 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/record"
+        android:id="@+id/backMovementButton2048"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:onClick="openRecords"
-        android:text="SHOW RECORDS"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="40dp"
+        android:onClick="backMovement"
+        android:text="Back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout2048" />
+
+    <Button
+        android:id="@+id/restartButton2048"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="52dp"
+        android:onClick="restartGame"
+        android:text="Restart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout2048" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/boardBackground">
+
+    <GridLayout
+        android:id="@+id/gridLayout2048"
+        android:layout_width="364dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:columnCount="7"
+        android:rowCount="7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/balls">
+
+        <FrameLayout
+            android:id="@+id/f00"
+            android:layout_width="52dp"
+            android:layout_height="52dp" />
+
+        <FrameLayout
+            android:id="@+id/f01"
+            android:layout_width="52dp"
+            android:layout_height="52dp" />
+
+        <FrameLayout
+            android:id="@+id/f02"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b1"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f03"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b2"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f04"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b3"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f05"
+            android:layout_width="52dp"
+            android:layout_height="52dp" />
+
+        <FrameLayout
+            android:id="@+id/f06"
+            android:layout_width="52dp"
+            android:layout_height="52dp" />
+
+        <FrameLayout
+            android:id="@+id/f10"
+            android:layout_width="52dp"
+            android:layout_height="52dp" />
+
+        <FrameLayout
+            android:id="@+id/f11"
+            android:layout_width="52dp"
+            android:layout_height="52dp" />
+
+        <FrameLayout
+            android:id="@+id/f12"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b4"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f13"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b5"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f14"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b6"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f15"
+            android:layout_width="52dp"
+            android:layout_height="52dp" />
+
+        <FrameLayout
+            android:id="@+id/f16"
+            android:layout_width="52dp"
+            android:layout_height="52dp" />
+
+        <FrameLayout
+            android:id="@+id/f20"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b7"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f21"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b8"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f22"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b9"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f23"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b10"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f24"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b11"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f25"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b12"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f26"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b13"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f30"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b14"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f31"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b15"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f32"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b16"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f33"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2" />
+
+        <FrameLayout
+            android:id="@+id/f34"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b17"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f35"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b18"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f36"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b19"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f40"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b20"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f41"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b21"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f42"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b22"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f43"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b23"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f44"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b24"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f45"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b25"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f46"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b26"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/f50"
+            android:layout_width="52dp"
+            android:layout_height="52dp" />
+
+        <FrameLayout
+            android:id="@+id/f51"
+            android:layout_width="52dp"
+            android:layout_height="52dp" />
+
+        <FrameLayout
+            android:id="@+id/f52"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b27"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f53"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b28"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f54"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b29"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f55"
+            android:layout_width="52dp"
+            android:layout_height="52dp" />
+
+        <FrameLayout
+            android:id="@+id/f56"
+            android:layout_width="52dp"
+            android:layout_height="52dp" />
+
+        <FrameLayout
+            android:id="@+id/f60"
+            android:layout_width="52dp"
+            android:layout_height="52dp" />
+
+        <FrameLayout
+            android:id="@+id/f61"
+            android:layout_width="52dp"
+            android:layout_height="52dp" />
+
+        <FrameLayout
+            android:id="@+id/f62"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b30"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f63"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b31"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f64"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/hueco2">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/b32"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bola"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/f65"
+            android:layout_width="52dp"
+            android:layout_height="52dp" />
+
+        <FrameLayout
+            android:id="@+id/f66"
+            android:layout_width="52dp"
+            android:layout_height="52dp" />
+
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/balls"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/bola"
+        android:gravity="center"
+        android:textColor="@color/softYellow"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/timerPeg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="00:00:000"
+        android:textColor="@color/brown"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="217dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/peg_solitaire" />
+
+    <Button
+        android:id="@+id/backMovementButtonPegSolitaire"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="40dp"
+        android:onClick="backMovement"
+        android:text="Back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout2048" />
+
+    <Button
+        android:id="@+id/restartButtonPegSolitaire"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="52dp"
+        android:onClick="restartGame"
+        android:text="Restart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout2048" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

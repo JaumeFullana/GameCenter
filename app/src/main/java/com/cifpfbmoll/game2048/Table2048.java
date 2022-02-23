@@ -1,6 +1,9 @@
-package com.cifpfbmoll.gamecenter;
+package com.cifpfbmoll.game2048;
 
 import android.view.MotionEvent;
+
+import com.cifpfbmoll.game2048.Cell2048;
+import com.cifpfbmoll.game2048.Game2048Activity;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -8,13 +11,15 @@ import java.util.Random;
 public class Table2048 {
 
     private Game2048Activity main;
-    private Cell2048 [][] cells;
-    private ArrayList <String> disponibleCells;
+    private Cell2048[][] cells;
+    private Cell2048 [][] cellsCopy;
+    private ArrayList <String> availableCells;
 
-    public Table2048(Game2048Activity main, Cell2048 [][] cells) {
+    public Table2048(Game2048Activity main, Cell2048 [][] cells, Cell2048 [][] cellsCopy) {
         this.main=main;
         this.cells=cells;
-        this.initCells();
+        this.initCells(this.cells);
+        this.cellsCopy=cellsCopy;
         this.fillDisponibleCells();
     }
 
@@ -22,30 +27,26 @@ public class Table2048 {
         return cells;
     }
 
-    public void setCells(Cell2048[][] cells) {
-        this.cells = cells;
+    public Cell2048[][] getCellsCopy() {
+        return cellsCopy;
     }
 
-    public Game2048Activity getMain() {
-        return main;
+    public void setCellsCopy(Cell2048[][] cellsCopy) {
+        this.cellsCopy = cellsCopy;
     }
 
-    public void setMain(Game2048Activity main) {
-        this.main = main;
+    public ArrayList<String> getAvailableCells() {
+        return availableCells;
     }
 
-    public ArrayList<String> getDisponibleCells() {
-        return disponibleCells;
+    public void setAvailableCells(ArrayList<String> availableCells) {
+        this.availableCells = availableCells;
     }
 
-    public void setDisponibleCells(ArrayList<String> disponibleCells) {
-        this.disponibleCells = disponibleCells;
-    }
-
-    private void initCells(){
-        for (int i=0; i<this.cells.length;i++){
-            for (int j=0; j<this.cells[i].length;j++){
-                this.cells[i][j]=new Cell2048(0);
+    public void initCells(Cell2048 [][] cells){
+        for (int i=0; i<cells.length;i++){
+            for (int j=0; j<cells[i].length;j++){
+                cells[i][j]=new Cell2048(0);
             }
         }
     }
@@ -69,11 +70,11 @@ public class Table2048 {
      * occupied in the Matrix cells.
      */
     public void fillDisponibleCells(){
-        this.setDisponibleCells(new ArrayList<String>());
-        for (int i=0;i<4;i++){
-            for (int j=0;j<4;j++){
+        this.setAvailableCells(new ArrayList<>());
+        for (int i=0;i<cells.length;i++){
+            for (int j=0;j<cells[i].length;j++){
                 if(this.getCells()[i][j].getValue()==0) {
-                    this.getDisponibleCells().add(i + "" + j);
+                    this.getAvailableCells().add(i + "" + j);
                 }
             }
         }
@@ -95,13 +96,21 @@ public class Table2048 {
         return pos;
     }
 
+    public void copyCells(Cell2048 [][] originalCells, Cell2048 [][] copyCells){
+        for (int i=0; i<originalCells.length; i++){
+            for (int j=0; j<originalCells[i].length;j++){
+                copyCells[i][j]=new Cell2048(originalCells[i][j]);
+            }
+        }
+    }
+
     public int checkState(){
         //state -1 lose, state 0 still playing, state 1 win
         int state=-1;
         int i=0;
-        while (i<4 & state==-1){
+        while (i<cells.length & state==-1){
             int j=0;
-            while (j<4 & state==-1){
+            while (j<cells[i].length & state==-1){
                 if(this.getCells()[i][j].getValue()!=0) {
                     if(this.getCells()[i][j].getValue()==2048){
                         state=1;
@@ -124,20 +133,20 @@ public class Table2048 {
         //s'ha de diferenciar si va cap adalt o cap abaix dreta o esquerra
         int state=-1;
         int i=0;
-        while (i<4 && state==-1){
+        while (i<cells.length && state==-1){
             int j=0;
-            while (j<4 && state==-1){
+            while (j<cells[i].length && state==-1){
                 if (i!=0) {
                     if(this.getCells()[i-1][j].getValue()==this.getCells()[i][j].getValue()) {
                         state = 0;
                     }
                 }
-                if (i!=3){
+                if (i!=cells.length-1){
                     if(this.getCells()[i+1][j].getValue()==this.getCells()[i][j].getValue()) {
                         state = 0;
                     }
                 }
-                if (j!=3){
+                if (j!=cells[i].length-1){
                     if(this.getCells()[i][j+1].getValue()==this.getCells()[i][j].getValue()) {
                         state = 0;
                     }
@@ -156,9 +165,8 @@ public class Table2048 {
 
     public String getRandomEmptyCell(){
         Random r=new Random();
-        int position=r.nextInt(this.getDisponibleCells().size());
-        String cell=this.getDisponibleCells().get(position);
-        return cell;
+        int position=r.nextInt(this.getAvailableCells().size());
+        return this.getAvailableCells().get(position);
     }
 
     private void resetCells(){
@@ -178,18 +186,20 @@ public class Table2048 {
         int iAux=0;
         int jAux=0;
         boolean joined;
+        Cell2048 [][] temporalCells=new Cell2048[this.cells.length][this.cells[0].length];
+        this.copyCells(this.cells,temporalCells);
 
         resetCells();
 
         if (xDiff>yDiff) {
             //left
             if (event1.getX() > event2.getX()) {
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < cells.length; i++) {
                     moving = true;
                     joined = false;
                     while (moving) {
                         moving = false;
-                        for (int j = 0; j < 3; j++) {
+                        for (int j = 0; j < cells[i].length-1; j++) {
                             if (this.getCells()[i][j].getValue() == 0 && this.getCells()[i][j + 1].getValue() != 0) {
                                 this.getCells()[i][j]=new Cell2048(this.getCells()[i][j + 1]);
                                 this.getCells()[i][j + 1]=new Cell2048(0);
@@ -206,7 +216,7 @@ public class Table2048 {
                                     this.getCells()[i][j+1].setOldX2(this.getCells()[i][j].getOldX());
                                     this.getCells()[i][j]=new Cell2048(this.getCells()[i][j + 1]);
                                     this.getCells()[i][j].setValue(this.getCells()[i][j].getValue() * 2);
-                                    main.setPuntuacion(this.getCells()[i][j].getValue());
+                                    main.setScore(this.getCells()[i][j].getValue());
                                     this.getCells()[i][j + 1]=new Cell2048(0);
                                     moving = true;
                                     joined = true;
@@ -221,12 +231,12 @@ public class Table2048 {
             }
             //right
             else{
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < cells.length; i++) {
                     moving = true;
                     joined=false;
                     while (moving) {
                         moving = false;
-                        for (int j = 3; j > 0; j--) {
+                        for (int j = cells[i].length-1; j > 0; j--) {
                             if (this.getCells()[i][j].getValue() == 0 && this.getCells()[i][j - 1].getValue() != 0) {
                                 this.getCells()[i][j]=new Cell2048(this.getCells()[i][j - 1]);
                                 this.getCells()[i][j - 1]=new Cell2048(0);
@@ -242,7 +252,7 @@ public class Table2048 {
                                     this.getCells()[i][j-1].setOldX2(this.getCells()[i][j].getOldX());
                                     this.getCells()[i][j]=new Cell2048(this.getCells()[i][j - 1]);
                                     this.getCells()[i][j].setValue(this.getCells()[i][j].getValue() * 2);
-                                    main.setPuntuacion(this.getCells()[i][j].getValue());
+                                    main.setScore(this.getCells()[i][j].getValue());
                                     this.getCells()[i][j - 1]=new Cell2048(0);
                                     moving = true;
                                     joined = true;
@@ -259,12 +269,12 @@ public class Table2048 {
         else {
             //up
             if (event1.getY() > event2.getY()) {
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < cells.length; i++) {
                     moving = true;
                     joined=false;
                     while (moving) {
                         moving = false;
-                        for (int j = 0; j < 3; j++) {
+                        for (int j = 0; j < cells[i].length-1; j++) {
                             if (this.getCells()[j][i].getValue() == 0 && this.getCells()[j+1][i].getValue() != 0) {
                                 this.getCells()[j][i]=new Cell2048(this.getCells()[j+1][i]);
                                 this.getCells()[j+1][i]=new Cell2048(0);
@@ -280,7 +290,7 @@ public class Table2048 {
                                     this.getCells()[j+1][i].setOldX2(this.getCells()[j][i].getOldX());
                                     this.getCells()[j][i]=new Cell2048(this.getCells()[j+1][i]);
                                     this.getCells()[j][i].setValue(this.getCells()[j][i].getValue() * 2);
-                                    main.setPuntuacion(this.getCells()[j][i].getValue());
+                                    main.setScore(this.getCells()[j][i].getValue());
                                     this.getCells()[j + 1][i]=new Cell2048(0);
                                     moving = true;
                                     joined = true;
@@ -295,12 +305,12 @@ public class Table2048 {
             }
             //down
             else {
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < cells.length; i++) {
                     moving = true;
                     joined=false;
                     while (moving) {
                         moving = false;
-                        for (int j = 3; j > 0; j--) {
+                        for (int j = cells[i].length-1; j > 0; j--) {
                             if (this.getCells()[j][i].getValue() == 0 && this.getCells()[j-1][i].getValue() != 0) {
                                 this.getCells()[j][i]=new Cell2048(this.getCells()[j-1][i]);
                                 this.getCells()[j-1][i]=new Cell2048(0);
@@ -316,7 +326,7 @@ public class Table2048 {
                                     this.getCells()[j-1][i].setOldX2(this.getCells()[j][i].getOldX());
                                     this.getCells()[j][i]=new Cell2048(this.getCells()[j-1][i]);
                                     this.getCells()[j][i].setValue(this.getCells()[j][i].getValue() * 2);
-                                    main.setPuntuacion(this.getCells()[j][i].getValue());
+                                    main.setScore(this.getCells()[j][i].getValue());
                                     this.getCells()[j - 1][i]=new Cell2048(0);
                                     moving = true;
                                     joined = true;
@@ -330,8 +340,9 @@ public class Table2048 {
                 }
             }
         }
-        if (loops>4){
+        if (loops>cells.length){
             moved=true;
+            this.copyCells(temporalCells,this.cellsCopy);
         }
         //devuelve booleano para saber si se ha movido algo o no ja que si nada se ha movido no se
         //va a generar un numero nuevo ni ara falta refrescar la interfaz grafica

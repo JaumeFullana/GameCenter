@@ -1,8 +1,10 @@
-package com.cifpfbmoll.gamecenter;
+package com.cifpfbmoll.gamepegsolitaire;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.cifpfbmoll.gamecenter.R;
 
 public class RecordsPegSolitaireActivity extends AppCompatActivity {
 

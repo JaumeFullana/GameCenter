@@ -1,11 +1,10 @@
-package com.cifpfbmoll.gamecenter;
+package com.cifpfbmoll.game2048;
 
 public class Cell2048 {
 
     private int value;
     private int oldY;
     private int oldX;
-    //Per afegir
     private boolean joined;
     private int oldY2;
     private int oldX2;
@@ -15,12 +14,12 @@ public class Cell2048 {
     }
 
     public Cell2048(Cell2048 cell) {
-        this.value = cell.getValue();
-        this.oldY = cell.getOldY();
-        this.oldX = cell.getOldX();
-        this.joined = cell.isJoined();
-        this.oldY2 =cell.getOldY2();
-        this.oldX2 = cell.getOldX2();
+        this.value = cell.value;
+        this.oldY = cell.oldY;
+        this.oldX = cell.oldX;
+        this.joined = cell.joined;
+        this.oldY2 =cell.oldY2;
+        this.oldX2 = cell.oldX2;
     }
 
     public int getValue() {

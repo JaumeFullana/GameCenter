@@ -1,17 +1,37 @@
-package com.cifpfbmoll.gamecenter;
+package com.cifpfbmoll.gamepegsolitaire;
 
 public class TablePegSolitaire {
 
     //-1 not available, 0 occupied, 1 free
     private int [][] cells;
+    private int [][] cellsCopy;
     private int balls;
+    private int [] cellDeleted;
+    private int [] cellBeforeMovement;
+    private int [] cellAfterMovement;
 
     public TablePegSolitaire() {
         this.balls=0;
     }
 
+    public int[] getCellDeleted() {
+        return cellDeleted;
+    }
+
+    public int[] getCellBeforeMovement() {
+        return cellBeforeMovement;
+    }
+
+    public int[] getCellAfterMovement() {
+        return cellAfterMovement;
+    }
+
     public int[][] getCells() {
         return cells;
+    }
+
+    public int[][] getCellsCopy() {
+        return cellsCopy;
     }
 
     public void setCells(int[][] cells) {
@@ -26,16 +46,61 @@ public class TablePegSolitaire {
      * Initialitzes the matrix and set it like an english board peg solitaire.
      */
     public void initEnglishBoard(){
-        this.cells=new int [7][7];
-        this.cells[3][3]=1;
-        for (int i=0;i<7;i++){
-            if (i==2){
-                i=5;
+        this.cells = new int [7][7];
+        this.cellsCopy = new int [7][7];
+        this.cells[3][3] = 1;
+        for (int i = 0; i<7; i++){
+            if (i == 2){
+                i = 5;
             }
             this.cells[i][0] = -1;
             this.cells[i][1] = -1;
             this.cells[i][5] = -1;
             this.cells[i][6] = -1;
+        }
+    }
+
+    public void initGermanBoard(){
+        this.cells = new int [9][9];
+        this.cellsCopy = new int [9][9];
+        this.cells[4][4] = 1;
+        for (int i = 0; i<9; i++){
+            if (i == 3){
+                i = 6;
+            }
+            this.cells[i][0] = -1;
+            this.cells[i][1] = -1;
+            this.cells[i][2] = -1;
+            this.cells[i][6] = -1;
+            this.cells[i][7] = -1;
+            this.cells[i][8] = -1;
+        }
+    }
+
+    public void initEuropeanBoard(){
+        this.cells = new int [7][7];
+        this.cellsCopy = new int [7][7];
+        this.cells[2][3] = 1;
+
+        this.cells[0][0] = -1;
+        this.cells[0][1] = -1;
+        this.cells[0][5] = -1;
+        this.cells[0][6] = -1;
+        this.cells[1][0] = -1;
+        this.cells[1][6] = -1;
+        this.cells[5][0] = -1;
+        this.cells[5][6] = -1;
+        this.cells[6][0] = -1;
+        this.cells[6][1] = -1;
+        this.cells[6][5] = -1;
+        this.cells[6][6] = -1;
+    }
+
+    public void copyCells(int [][] originalCells, int [][] copyCells){
+        for (int i=0; i<originalCells.length; i++){
+            for (int j=0; j<originalCells[i].length;j++){
+                copyCells[i][j]=originalCells[i][j];
+            }
         }
     }
 
@@ -53,6 +118,21 @@ public class TablePegSolitaire {
     }
 
     /**
+     * Counts the balls of the board
+     */
+    public int getHolesNumber(){
+        int holes=0;
+        for (int i=0; i<this.cells.length;i++){
+            for (int j=0; j<this.cells[i].length;j++){
+                if (this.cells[i][j]==0 || this.cells[i][j]==1){
+                    holes++;
+                }
+            }
+        }
+        return holes;
+    }
+
+    /**
      * Method that change the state of the matrix positions that are participating in the movement.
      * Set the old poisition(where the drag started) and the ballToDelete position (position between
      * old position and new position) to 1(free) and the new position to 0(occupied). After that,
@@ -62,10 +142,21 @@ public class TablePegSolitaire {
      * @param ballToDelete poisiton of the ball which is in the middle of the two other positions
      */
     public void moveBall(int [] oldPosition, int [] newPosition, int [] ballToDelete){
+        this.copyCells(this.cells,this.cellsCopy);
+        this.cellDeleted=ballToDelete;
+        this.cellBeforeMovement=oldPosition;
+        this.cellAfterMovement=newPosition;
         this.getCells()[oldPosition[0]][oldPosition[1]] = 1;
         this.getCells()[newPosition[0]][newPosition[1]] = 0;
         this.getCells()[ballToDelete[0]][ballToDelete[1]]= 1;
         this.balls--;
+    }
+
+    public void redoMovement(){
+        this.getCells()[this.cellAfterMovement[0]][this.cellAfterMovement[1]] = 1;
+        this.getCells()[this.cellBeforeMovement[0]][this.cellBeforeMovement[1]] = 0;
+        this.getCells()[this.cellDeleted[0]][this.cellDeleted[1]]= 0;
+        this.balls++;
     }
 
     /**

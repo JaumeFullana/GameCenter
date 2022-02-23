@@ -2,14 +2,12 @@ package com.cifpfbmoll.gamecenter;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +16,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.material.navigation.NavigationView;
+import com.cifpfbmoll.game2048.Game2048Activity;
+import com.cifpfbmoll.game2048.Records2048Activity;
+import com.cifpfbmoll.gamepegsolitaire.GamePegSolitaireActivity;
+import com.cifpfbmoll.gamepegsolitaire.RecordsPegSolitaireActivity;
 
 public class GamesListActivity extends AppCompatActivity {
 
@@ -64,10 +65,26 @@ public class GamesListActivity extends AppCompatActivity {
             case R.id.help_menu_bar:
 
                 break;
+            case R.id.records_2048:
+                openRecords2048();
+                break;
+            case R.id.records_peg_solitaire:
+                openRecordsPegSolitaire();
+                break;
             default:
                 result=super.onOptionsItemSelected(item);
         }
         return result;
+    }
+
+    public void openRecords2048(){
+        Intent intent=new Intent(this, Records2048Activity.class);
+        startActivity(intent);
+    }
+
+    public void openRecordsPegSolitaire(){
+        Intent intent=new Intent(this, RecordsPegSolitaireActivity.class);
+        startActivity(intent);
     }
 }
 

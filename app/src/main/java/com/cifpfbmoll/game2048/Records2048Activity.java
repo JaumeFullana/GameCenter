@@ -1,4 +1,4 @@
-package com.cifpfbmoll.gamecenter;
+package com.cifpfbmoll.game2048;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.cifpfbmoll.gamecenter.R;
 
 public class Records2048Activity extends AppCompatActivity {
 

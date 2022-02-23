@@ -86,10 +86,10 @@ public class SplashActivity extends AppCompatActivity {
                 .with(animatorDorado1Invisible).with(animatorRojo1Invisible).with(animatorRojo2Invisible).after(animatorLight1);
         set.play(animatorJackGames).after(animatorLight2);
 
-        Intent intent=new Intent(this, GamesListActivity.class);
         animatorJackGames.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
+                Intent intent=new Intent(SplashActivity.this, LoginActivity.class);
                 super.onAnimationEnd(animation);
                 startActivity(intent);
                 finish();
