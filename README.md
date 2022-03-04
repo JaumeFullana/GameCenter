@@ -11,9 +11,7 @@ The database consists of two tables, the user table and the score table, where w
 
 The front-end of the application is focused on being simple, user friendly and nice to look at. The colours of the applications were chosen with the help of the adobe palette colour generator, an adobe web page. The sounds of the application are simple, and in the games, there are sound on the fling to move the 2048 cells and on the drag and drop of the peg solitaire ball. Photos of the two games activities:
 
-![image](https://user-images.githubusercontent.com/74202163/156850974-b5230cf9-e663-46a6-bb4b-24d2864231c1.png) ![image](https://user-images.githubusercontent.com/74202163/156850988-1278d20f-8d7d-4cd7-9c5c-cfe774d12e1c.png)
-
-
+![image](https://user-images.githubusercontent.com/74202163/156851199-4c38dad7-2021-43d2-b84f-fbbd5ab85628.png) ![image](https://user-images.githubusercontent.com/74202163/156851211-0c4869b3-8663-449f-961f-059c1b00eded.png)
 
 There are a lot of things to pay attention in this application, some of the most important are:
 -	The Animator2048 class, a class that animates the movements and joins of the 2048 game, regardless of the mode of the 2048 (3x3, 4x4, 5x5, …). This is because when you instantiate this class, you can pass by parameter information about the size of the matrix and with this information the class can calculate the distance that cells have to move to arrive to its new position.
