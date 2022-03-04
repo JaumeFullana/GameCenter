@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 public class GamesListActivity extends AppCompatActivity {
 
@@ -30,18 +29,13 @@ public class GamesListActivity extends AppCompatActivity {
         textList[0]="Peg Solitaire";
         textList[1]="2048";
 
-        String[] descriptionList=new String[2];
-        descriptionList[0]="Board game where the objective is to empty the entire board except for a solitary peg";
-        descriptionList[1]="Puzzle video game where the objective is to slide numbered tiles " +
-                "on a grid to combine them to create the number 2048";
-
         int[] imageList=new int[2];
         imageList[0]=getResources().getIdentifier("icon_peg_solitaire","drawable", getPackageName());
         imageList[1]=getResources().getIdentifier("icon_2048","drawable", getPackageName());
 
         RecyclerView list = findViewById(R.id.recyclerViewGames);
         list.setLayoutManager(new LinearLayoutManager(this));
-        list.setAdapter(new CustomGamesAdapter(textList, imageList, descriptionList, this));
+        list.setAdapter(new CustomGamesAdapter(textList, imageList, this));
     }
 
     /**
@@ -86,7 +80,7 @@ public class GamesListActivity extends AppCompatActivity {
      * Starts the RecordsActivity.
      */
     public void openRecords(){
-        Intent intent=new Intent(this, RecordsActivity.class);
+        Intent intent=new Intent(this, RecordsListActivity.class);
         startActivity(intent);
     }
 }
@@ -95,7 +89,6 @@ class CustomGamesAdapter extends RecyclerView.Adapter<CustomGamesAdapter.ViewHol
 
     private String[] textList;
     private int[] imageList;
-    private String[] descriptionList;
     private GamesListActivity activity;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -124,10 +117,9 @@ class CustomGamesAdapter extends RecyclerView.Adapter<CustomGamesAdapter.ViewHol
     }
 
 
-    public CustomGamesAdapter(String[] textList, int [] imageList, String[] descriptionList, GamesListActivity activity) {
+    public CustomGamesAdapter(String[] textList, int [] imageList, GamesListActivity activity) {
         this.textList = textList;
         this.imageList = imageList;
-        this.descriptionList = descriptionList;
         this.activity = activity;
     }
 

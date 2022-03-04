@@ -19,12 +19,15 @@
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_games_list.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_record.xml" value="0.16614583333333333" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_records.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_records_2048.xml" value="0.24909420289855072" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_records_list.xml" value="0.16614583333333333" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_records_peg_solitaire.xml" value="0.10364583333333334" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_sign_up.xml" value="0.2210144927536232" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_splash.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_user_settings.xml" value="0.2" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_user_settings_default.xml" value="0.16614583333333333" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_user_settings_game_mode.xml" value="0.152" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/game_card_row.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/navigation_view.xml" value="0.2" />

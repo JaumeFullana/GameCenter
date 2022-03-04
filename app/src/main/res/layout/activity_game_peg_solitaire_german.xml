@@ -7,7 +7,7 @@
     android:background="@color/boardBackground">
 
     <GridLayout
-        android:id="@+id/gridLayout2048"
+        android:id="@+id/gridLayoutPegSolitaire"
         android:layout_width="360dp"
         android:layout_height="360dp"
         android:layout_marginStart="15dp"
@@ -22,6 +22,7 @@
 
         <FrameLayout
             android:id="@+id/f00"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -29,6 +30,7 @@
 
         <FrameLayout
             android:id="@+id/f01"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -36,6 +38,7 @@
 
         <FrameLayout
             android:id="@+id/f02"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -98,6 +101,7 @@
 
         <FrameLayout
             android:id="@+id/f06"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -105,6 +109,7 @@
 
         <FrameLayout
             android:id="@+id/f07"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -112,6 +117,7 @@
 
         <FrameLayout
             android:id="@+id/f08"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -119,6 +125,7 @@
 
         <FrameLayout
             android:id="@+id/f10"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -126,6 +133,7 @@
 
         <FrameLayout
             android:id="@+id/f11"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -133,6 +141,7 @@
 
         <FrameLayout
             android:id="@+id/f12"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -194,6 +203,7 @@
 
         <FrameLayout
             android:id="@+id/f16"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -201,6 +211,7 @@
 
         <FrameLayout
             android:id="@+id/f17"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -208,6 +219,7 @@
 
         <FrameLayout
             android:id="@+id/f18"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -215,6 +227,7 @@
 
         <FrameLayout
             android:id="@+id/f20"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -223,6 +236,7 @@
 
         <FrameLayout
             android:id="@+id/f21"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -231,6 +245,7 @@
 
         <FrameLayout
             android:id="@+id/f22"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -292,6 +307,7 @@
 
         <FrameLayout
             android:id="@+id/f26"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -299,6 +315,7 @@
 
         <FrameLayout
             android:id="@+id/f27"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -306,6 +323,7 @@
 
         <FrameLayout
             android:id="@+id/f28"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -793,6 +811,7 @@
 
         <FrameLayout
             android:id="@+id/f60"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -800,6 +819,7 @@
 
         <FrameLayout
             android:id="@+id/f61"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -807,6 +827,7 @@
 
         <FrameLayout
             android:id="@+id/f62"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -868,6 +889,7 @@
 
         <FrameLayout
             android:id="@+id/f66"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -875,6 +897,7 @@
 
         <FrameLayout
             android:id="@+id/f67"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -882,6 +905,7 @@
 
         <FrameLayout
             android:id="@+id/f68"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -889,6 +913,7 @@
 
         <FrameLayout
             android:id="@+id/f70"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -896,6 +921,7 @@
 
         <FrameLayout
             android:id="@+id/f71"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -903,6 +929,7 @@
 
         <FrameLayout
             android:id="@+id/f72"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -964,6 +991,7 @@
 
         <FrameLayout
             android:id="@+id/f76"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -971,6 +999,7 @@
 
         <FrameLayout
             android:id="@+id/f77"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -978,6 +1007,7 @@
 
         <FrameLayout
             android:id="@+id/f78"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -985,6 +1015,7 @@
 
         <FrameLayout
             android:id="@+id/f80"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -992,6 +1023,7 @@
 
         <FrameLayout
             android:id="@+id/f81"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -999,6 +1031,7 @@
 
         <FrameLayout
             android:id="@+id/f82"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -1060,6 +1093,7 @@
 
         <FrameLayout
             android:id="@+id/f86"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -1067,6 +1101,7 @@
 
         <FrameLayout
             android:id="@+id/f87"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -1074,6 +1109,7 @@
 
         <FrameLayout
             android:id="@+id/f88"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -1125,7 +1161,7 @@
         android:onClick="backMovement"
         android:text="Back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout2048" />
+        app:layout_constraintTop_toBottomOf="@+id/gridLayoutPegSolitaire" />
 
     <Button
         android:id="@+id/restartButtonPegSolitaire"
@@ -1136,6 +1172,6 @@
         android:onClick="restartGame"
         android:text="Restart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout2048" />
+        app:layout_constraintTop_toBottomOf="@+id/gridLayoutPegSolitaire" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

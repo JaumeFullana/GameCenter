@@ -6,10 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import com.cifpfbmoll.gamecenter.Score;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 
@@ -32,7 +34,9 @@ public class DataBaseAssistant extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDb) {
         sqLiteDb.execSQL("CREATE TABLE IF NOT EXISTS user (user_name TEXT PRIMARY KEY, user_password TEXT NOT NULL," +
                 " user_picture BLOB);");
-        sqLiteDb.execSQL("CREATE TABLE IF NOT EXISTS score (score INTEGER, time TEXT, game TEXT, mode TEXT, user_name TEXT);");
+        sqLiteDb.execSQL("CREATE TABLE IF NOT EXISTS score (score INTEGER, time TEXT, game TEXT, mode TEXT," +
+                " user_name TEXT, game_picture BLOB, _id INTEGER PRIMARY KEY AUTOINCREMENT, FOREIGN KEY (user_name) REFERENCES " +
+                "user (user_name));");
     }
 
     /**
@@ -91,6 +95,10 @@ public class DataBaseAssistant extends SQLiteOpenHelper {
             c.put("game", score.getGame());
             c.put("mode", score.getMode());
             c.put("user_name", score.getUser_name());
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            Bitmap screenShot = score.getGamePicture();
+            screenShot.compress(Bitmap.CompressFormat.PNG, 0, stream);
+            c.put("game_picture", stream.toByteArray());
             dbWritable.insertOrThrow("score",null, c);
             inserted=true;
             dbWritable.close();

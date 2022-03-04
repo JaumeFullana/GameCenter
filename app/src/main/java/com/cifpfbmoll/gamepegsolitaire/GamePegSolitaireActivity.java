@@ -2,6 +2,8 @@ package com.cifpfbmoll.gamepegsolitaire;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,7 +26,7 @@ import com.cifpfbmoll.game2048.Game2048Activity;
 import com.cifpfbmoll.gamecenter.R;
 import com.cifpfbmoll.Utils.Timer;
 import com.cifpfbmoll.Utils.TimerInterface;
-import com.cifpfbmoll.gamecenter.RecordsActivity;
+import com.cifpfbmoll.gamecenter.RecordsListActivity;
 import com.cifpfbmoll.gamecenter.Score;
 import com.cifpfbmoll.gamecenter.UserSettingsActivity;
 
@@ -218,6 +220,7 @@ public class GamePegSolitaireActivity extends AppCompatActivity implements Timer
             if (state!=0){
                 this.timer.pause();
                 this.backButton.setEnabled(false);
+                v.setVisibility(View.VISIBLE);
                 this.saveRecord();
                 this.announceResult(state);
             }
@@ -285,6 +288,18 @@ public class GamePegSolitaireActivity extends AppCompatActivity implements Timer
     }
 
     /**
+     * takes an screenshot of a view and saves it in a bitmap.
+     * @param view to take the photo
+     * @return bitmap the screenshot
+     */
+    private Bitmap screenShot(View view) {
+        view.setDrawingCacheEnabled(true);
+        Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
+        view.setDrawingCacheEnabled(false);
+        return bitmap;
+    }
+
+    /**
      * Change the text of the timerView.
      * @param currentTime value to be setted as the text of the view, after being formatted.
      */
@@ -301,7 +316,7 @@ public class GamePegSolitaireActivity extends AppCompatActivity implements Timer
      * Starts the RecordsActivity.
      */
     public void openRecords(){
-        Intent intent=new Intent(this, RecordsActivity.class);
+        Intent intent=new Intent(this, RecordsListActivity.class);
         startActivity(intent);
     }
 
@@ -330,9 +345,10 @@ public class GamePegSolitaireActivity extends AppCompatActivity implements Timer
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String userName = preferences.getString("userName", "Wrong.User.Name");
         int puntuacion=Integer.parseInt(ballCounter.getText().toString());
-        String time= timerView.getText().toString();
+        String time = timerView.getText().toString();
+        Bitmap screenShot = this.screenShot(findViewById(R.id.gridLayoutPegSolitaire));
         DataBaseAssistant db=new DataBaseAssistant(this);
-        db.addScore(new Score(puntuacion, time, "Peg Solitaire", selectedMode, userName));
+        db.addScore(new Score(puntuacion, time, "Peg Solitaire", selectedMode, userName, screenShot));
     }
 
     /**

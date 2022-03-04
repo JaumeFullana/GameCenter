@@ -7,7 +7,7 @@
     android:background="@color/boardBackground">
 
     <GridLayout
-        android:id="@+id/gridLayout2048"
+        android:id="@+id/gridLayoutPegSolitaire"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
@@ -23,6 +23,7 @@
 
         <FrameLayout
             android:id="@+id/f00"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -30,6 +31,7 @@
 
         <FrameLayout
             android:id="@+id/f01"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -92,6 +94,7 @@
 
         <FrameLayout
             android:id="@+id/f05"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -99,6 +102,7 @@
 
         <FrameLayout
             android:id="@+id/f06"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -106,6 +110,7 @@
 
         <FrameLayout
             android:id="@+id/f10"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -203,6 +208,7 @@
 
         <FrameLayout
             android:id="@+id/f16"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -580,6 +586,7 @@
 
         <FrameLayout
             android:id="@+id/f50"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -677,6 +684,7 @@
 
         <FrameLayout
             android:id="@+id/f56"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -684,6 +692,7 @@
 
         <FrameLayout
             android:id="@+id/f60"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -691,6 +700,7 @@
 
         <FrameLayout
             android:id="@+id/f61"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -752,6 +762,7 @@
 
         <FrameLayout
             android:id="@+id/f65"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -759,6 +770,7 @@
 
         <FrameLayout
             android:id="@+id/f66"
+            android:background="@color/boardBackground"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_columnWeight="1"
@@ -810,7 +822,7 @@
         android:onClick="backMovement"
         android:text="Back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout2048" />
+        app:layout_constraintTop_toBottomOf="@+id/gridLayoutPegSolitaire" />
 
     <Button
         android:id="@+id/restartButtonPegSolitaire"
@@ -821,6 +833,6 @@
         android:onClick="restartGame"
         android:text="Restart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout2048" />
+        app:layout_constraintTop_toBottomOf="@+id/gridLayoutPegSolitaire" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

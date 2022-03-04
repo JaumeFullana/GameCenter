@@ -10,11 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,9 +31,8 @@ import android.widget.TextView;
 import com.cifpfbmoll.Utils.DataBaseAssistant;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
-public class RecordsActivity extends AppCompatActivity {
+public class RecordsListActivity extends AppCompatActivity {
 
     private DataBaseAssistant db;
     private Spinner spinnerOrder;
@@ -49,12 +50,12 @@ public class RecordsActivity extends AppCompatActivity {
     private String appUser;
 
     /**
-     * Overrided method, create all the necessary things to start the game.
+     * Overrided method, create all the necessary things to start the activity.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_records);
+        setContentView(R.layout.activity_records_list);
         this.spinnerOrder = findViewById(R.id.spinnerOrderBy);
         this.spinnerSearch = findViewById(R.id.spinnerSearchBy);
         this.editSearch = findViewById(R.id.editSearch);
@@ -154,7 +155,7 @@ public class RecordsActivity extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 if (((CustomAdapter.ViewHolder)viewHolder).getTextUser().getText().toString().equals(appUser)){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(RecordsActivity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RecordsListActivity.this);
                     builder.setMessage("Do you want to delete this record?")
                             .setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
                                 @Override
@@ -173,7 +174,7 @@ public class RecordsActivity extends AppCompatActivity {
                             });
                     builder.create().show();
                 } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(RecordsActivity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RecordsListActivity.this);
                     builder.setMessage("You can't delete other users' scores")
                                 .setTitle("ERROR");
                     builder.create().show();
@@ -212,7 +213,9 @@ public class RecordsActivity extends AppCompatActivity {
                     String game = cursor.getString(2);
                     String mode = cursor.getString(3);
                     String user_name = cursor.getString(4);
-                    scoreList.add(new Score(score, time, game, mode, user_name));
+                    byte[] picture=cursor.getBlob(5);
+                    Bitmap gamePicture = BitmapFactory.decodeByteArray(picture,0,picture.length);
+                    scoreList.add(new Score(score, time, game, mode, user_name, gamePicture));
                 } while (cursor.moveToNext());
             }
         }
@@ -236,7 +239,7 @@ public class RecordsActivity extends AppCompatActivity {
 class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
     private ArrayList<Score> scoreList;
-    private RecordsActivity activity;
+    private RecordsListActivity activity;
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -246,6 +249,7 @@ class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
         private final TextView textUser;
         private final TextView textRecord;
         private final TextView textTime;
+        private Score score;
 
         public ViewHolder(View view) {
             super(view);
@@ -276,10 +280,18 @@ class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
         public TextView getTextTime() {
             return textTime;
         }
+
+        public Score getScore() {
+            return score;
+        }
+
+        public void setScore(Score score) {
+            this.score = score;
+        }
     }
 
 
-    public CustomAdapter(ArrayList<Score> scoreList, RecordsActivity activity) {
+    public CustomAdapter(ArrayList<Score> scoreList, RecordsListActivity activity) {
         this.scoreList = scoreList;
         this.activity = activity;
     }
@@ -296,7 +308,17 @@ class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.record_row, viewGroup, false);
 
-        return new ViewHolder(view);
+        ViewHolder viewHolder = new ViewHolder(view);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, RecordActivity.class);
+                intent.putExtra("SCORE", viewHolder.getScore());
+                activity.startActivity(intent);
+            }
+        });
+
+        return viewHolder;
     }
 
     /**
@@ -305,6 +327,7 @@ class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
+        viewHolder.setScore(scoreList.get(position));
         viewHolder.getTextMode().setText(scoreList.get(position).getMode());
         viewHolder.getTextRecord().setText(Integer.toString(scoreList.get(position).getScore()));
         viewHolder.getTextTime().setText(scoreList.get(position).getTime());
@@ -315,7 +338,6 @@ class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
         else if(scoreList.get(position).getGame().equals("Peg Solitaire")){
             viewHolder.getConstraintLayout().setBackgroundResource(R.drawable.icon_peg_solitaire_small);
         }
-
     }
 
     /**

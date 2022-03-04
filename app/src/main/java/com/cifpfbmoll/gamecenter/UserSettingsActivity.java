@@ -91,8 +91,8 @@ public class UserSettingsActivity extends AppCompatActivity {
             initGameSettingsComponents(game);
         }
 
-        this.textPlayerName = findViewById(R.id.textPlayerName);
-        this.textPlayerLevel = findViewById(R.id.textPlayerLevel);
+        this.textPlayerName = findViewById(R.id.textGameName);
+        this.textPlayerLevel = findViewById(R.id.textRecordGameMode);
         this.imageProfilePicture = findViewById(R.id.imageProfilePicture);
         this.buttonChangePicture = findViewById(R.id.buttonChangePicture);
         this.buttonChangePassword = findViewById(R.id.buttonChangePassword);

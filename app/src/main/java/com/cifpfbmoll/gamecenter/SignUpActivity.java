@@ -45,8 +45,8 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     /**
-     * Method to sign up a user in the game center, the user name can't be repeated and the passwords
-     * have to be equals.
+     * Method to sign up a user in the game center, the user name can't be repeated, the passwords
+     * have to be equals and the user name can't be longer than 14 characters.
      */
     private void signUp() {
         if (editTextUserName.getText().toString().isEmpty() ||
@@ -60,6 +60,12 @@ public class SignUpActivity extends AppCompatActivity {
         else if (!editTextPassword.getText().toString().equals(editTextPassword2.getText().toString())){
             AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
             builder.setMessage("The passwords aren't equals")
+                    .setTitle("ERROR");
+            builder.create().show();
+        }
+        else if (editTextUserName.getText().toString().length()>14){
+            AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
+            builder.setMessage("The user name can't be longer than 14 characters")
                     .setTitle("ERROR");
             builder.create().show();
         } else {

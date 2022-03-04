@@ -3,9 +3,10 @@ package com.cifpfbmoll.game2048;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,7 +28,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.GestureDetectorCompat;
 
 import com.cifpfbmoll.Utils.DataBaseAssistant;
-import com.cifpfbmoll.gamecenter.RecordsActivity;
+import com.cifpfbmoll.gamecenter.RecordsListActivity;
 import com.cifpfbmoll.gamecenter.Score;
 import com.cifpfbmoll.gamecenter.UserSettingsActivity;
 import com.cifpfbmoll.gamepegsolitaire.GamePegSolitaireActivity;
@@ -35,7 +36,7 @@ import com.cifpfbmoll.gamecenter.R;
 import com.cifpfbmoll.Utils.Timer;
 import com.cifpfbmoll.Utils.TimerInterface;
 
-import java.io.Serializable;
+import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -251,8 +252,15 @@ public class Game2048Activity extends AppCompatActivity implements GestureDetect
             timer.pause();
             backButton.setEnabled(false);
             announceResult(state);
-            saveRecord();
             playing=false;
+            Handler handler=new Handler();
+            Runnable runnable=new Runnable() {
+                @Override
+                public void run() {
+                    saveRecord();
+                }
+            };
+            handler.postDelayed(runnable,600);
         }
     }
 
@@ -280,8 +288,9 @@ public class Game2048Activity extends AppCompatActivity implements GestureDetect
         String userName = preferences.getString("userName", "Wrong.User.Name");
         int puntuation = Integer.parseInt(score.getText().toString());
         String time = timerView.getText().toString();
+        Bitmap screenShot = this.screenShot(findViewById(R.id.gridLayout2048));
         DataBaseAssistant db = new DataBaseAssistant(this);
-        db.addScore(new Score(puntuation, time, "2048", selectedMode, userName));
+        db.addScore(new Score(puntuation, time, "2048", selectedMode, userName, screenShot));
     }
 
     /**
@@ -368,10 +377,22 @@ public class Game2048Activity extends AppCompatActivity implements GestureDetect
     }
 
     /**
+     * takes an screenshot of a view and saves it in a bitmap.
+     * @param view to take the photo
+     * @return bitmap the screenshot
+     */
+    private Bitmap screenShot(View view) {
+        view.setDrawingCacheEnabled(true);
+        Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
+        view.setDrawingCacheEnabled(false);
+        return bitmap;
+    }
+
+    /**
      * Starts the RecordActivity.
      */
     public void openRecords(){
-        Intent intent=new Intent(this, RecordsActivity.class);
+        Intent intent=new Intent(this, RecordsListActivity.class);
         startActivity(intent);
     }
 
