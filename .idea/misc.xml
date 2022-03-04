@@ -7,24 +7,31 @@
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1234375" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/drawable/replay_img.xml" value="0.1" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/drawable/restart_img.xml" value="0.1" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/font/alfa_slab_one.xml" value="0.16145833333333334" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_game_2048.xml" value="0.264" />
-        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_game_2048_3x3.xml" value="0.264" />
-        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_game_2048_4x4.xml" value="0.11822916666666666" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_game_2048_3x3.xml" value="0.176" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_game_2048_4x4.xml" value="0.2" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_game_2048_5x5.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_game_peg_solitaire.xml" value="0.2" />
-        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_game_peg_solitaire_english.xml" value="0.264" />
-        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_game_peg_solitaire_european.xml" value="0.264" />
-        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_game_peg_solitaire_german.xml" value="0.264" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_game_peg_solitaire_english.xml" value="0.176" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_game_peg_solitaire_european.xml" value="0.2" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_game_peg_solitaire_german.xml" value="0.2" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_games_list.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_main.xml" value="0.176" />
-        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_records.xml" value="0.25181159420289856" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_records.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_records_2048.xml" value="0.24909420289855072" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_records_peg_solitaire.xml" value="0.10364583333333334" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_sign_up.xml" value="0.2210144927536232" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_splash.xml" value="0.264" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_user_settings.xml" value="0.2" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/activity_user_settings_game_mode.xml" value="0.152" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/game_card_row.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/navigation_view.xml" value="0.2" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/new_password_input.xml" value="0.23867753623188406" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/new_password_input_dialog.xml" value="0.2341485507246377" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/record_row.xml" value="0.264" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/layout/select_mode_dialog.xml" value="0.264" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/menu/menu_bar_options.xml" value="0.2" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/menu/menu_bar_options_2048.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/GameCenter/app/src/main/res/menu/menu_bar_options_peg_solitaire.xml" value="0.25416666666666665" />

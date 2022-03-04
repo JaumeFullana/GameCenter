@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -22,6 +24,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText userPassword;
     private DataBaseAssistant db;
 
+    /**
+     * Overrided method, create all the necessary things to start the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,17 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         this.buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean found=db.selectUser(userName.getText().toString(), userPassword.getText().toString());
-                if (found) {
-                    Intent intent = new Intent(LoginActivity.this, GamesListActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                    builder.setMessage("The user name or password isn't correct")
-                            .setTitle("ERROR");
-                    builder.create().show();
-                }
+                logIn();
             }
         });
 
@@ -59,6 +54,31 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Try to logIn in the gameCenter. If there isn`t a user with the inputed name or the password isn't
+     * correct, a error dialog is showed.
+     */
+    private void logIn() {
+        boolean found=db.searchUser(userName.getText().toString().toLowerCase(), userPassword.getText().toString());
+        if (found) {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("userName", userName.getText().toString());
+            editor.apply();
+            Intent intent = new Intent(LoginActivity.this, GamesListActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+            builder.setMessage("The user name or password isn't correct")
+                    .setTitle("ERROR");
+            builder.create().show();
+        }
+    }
+
+    /**
+     * Overrided method. Close the keyboard when another part of the screen is touched.
+     */
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (getCurrentFocus() != null) {

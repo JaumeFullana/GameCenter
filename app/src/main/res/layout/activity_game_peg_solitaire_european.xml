@@ -8,13 +8,14 @@
 
     <GridLayout
         android:id="@+id/gridLayout2048"
-        android:layout_width="364dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="10dp"
         android:columnCount="7"
         android:rowCount="7"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,18 +23,24 @@
 
         <FrameLayout
             android:id="@+id/f00"
-            android:layout_width="52dp"
-            android:layout_height="52dp" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"/>
 
         <FrameLayout
             android:id="@+id/f01"
-            android:layout_width="52dp"
-            android:layout_height="52dp" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"/>
 
         <FrameLayout
             android:id="@+id/f02"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -49,8 +56,10 @@
 
         <FrameLayout
             android:id="@+id/f03"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -65,8 +74,10 @@
 
         <FrameLayout
             android:id="@+id/f04"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -81,23 +92,31 @@
 
         <FrameLayout
             android:id="@+id/f05"
-            android:layout_width="52dp"
-            android:layout_height="52dp" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"/>
 
         <FrameLayout
             android:id="@+id/f06"
-            android:layout_width="52dp"
-            android:layout_height="52dp" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"/>
 
         <FrameLayout
             android:id="@+id/f10"
-            android:layout_width="52dp"
-            android:layout_height="52dp" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"/>
 
         <FrameLayout
             android:id="@+id/f11"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -112,8 +131,10 @@
 
         <FrameLayout
             android:id="@+id/f12"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -128,8 +149,10 @@
 
         <FrameLayout
             android:id="@+id/f13"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -144,8 +167,10 @@
 
         <FrameLayout
             android:id="@+id/f14"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -160,8 +185,10 @@
 
         <FrameLayout
             android:id="@+id/f15"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -176,13 +203,17 @@
 
         <FrameLayout
             android:id="@+id/f16"
-            android:layout_width="52dp"
-            android:layout_height="52dp" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"/>
 
         <FrameLayout
             android:id="@+id/f20"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -197,8 +228,10 @@
 
         <FrameLayout
             android:id="@+id/f21"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -213,8 +246,10 @@
 
         <FrameLayout
             android:id="@+id/f22"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -229,14 +264,18 @@
 
         <FrameLayout
             android:id="@+id/f23"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:background="@drawable/hueco2"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/hueco2" />
 
         <FrameLayout
             android:id="@+id/f24"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -251,8 +290,10 @@
 
         <FrameLayout
             android:id="@+id/f25"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -267,8 +308,10 @@
 
         <FrameLayout
             android:id="@+id/f26"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -283,8 +326,10 @@
 
         <FrameLayout
             android:id="@+id/f30"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -299,8 +344,10 @@
 
         <FrameLayout
             android:id="@+id/f31"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -315,8 +362,10 @@
 
         <FrameLayout
             android:id="@+id/f32"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -331,9 +380,11 @@
 
         <FrameLayout
             android:id="@+id/f33"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:background="@drawable/hueco2" >
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/b18"
@@ -347,8 +398,10 @@
 
         <FrameLayout
             android:id="@+id/f34"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -363,8 +416,10 @@
 
         <FrameLayout
             android:id="@+id/f35"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -379,8 +434,10 @@
 
         <FrameLayout
             android:id="@+id/f36"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -395,8 +452,10 @@
 
         <FrameLayout
             android:id="@+id/f40"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -411,8 +470,10 @@
 
         <FrameLayout
             android:id="@+id/f41"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -427,8 +488,10 @@
 
         <FrameLayout
             android:id="@+id/f42"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -443,8 +506,10 @@
 
         <FrameLayout
             android:id="@+id/f43"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -459,8 +524,10 @@
 
         <FrameLayout
             android:id="@+id/f44"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -475,8 +542,10 @@
 
         <FrameLayout
             android:id="@+id/f45"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -491,8 +560,10 @@
 
         <FrameLayout
             android:id="@+id/f46"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -509,13 +580,17 @@
 
         <FrameLayout
             android:id="@+id/f50"
-            android:layout_width="52dp"
-            android:layout_height="52dp" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"/>
 
         <FrameLayout
             android:id="@+id/f51"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -530,8 +605,10 @@
 
         <FrameLayout
             android:id="@+id/f52"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -546,8 +623,10 @@
 
         <FrameLayout
             android:id="@+id/f53"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -562,8 +641,10 @@
 
         <FrameLayout
             android:id="@+id/f54"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -578,8 +659,10 @@
 
         <FrameLayout
             android:id="@+id/f55"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -594,23 +677,31 @@
 
         <FrameLayout
             android:id="@+id/f56"
-            android:layout_width="52dp"
-            android:layout_height="52dp" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"/>
 
         <FrameLayout
             android:id="@+id/f60"
-            android:layout_width="52dp"
-            android:layout_height="52dp" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"/>
 
         <FrameLayout
             android:id="@+id/f61"
-            android:layout_width="52dp"
-            android:layout_height="52dp" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"/>
 
         <FrameLayout
             android:id="@+id/f62"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -625,8 +716,10 @@
 
         <FrameLayout
             android:id="@+id/f63"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -641,8 +734,10 @@
 
         <FrameLayout
             android:id="@+id/f64"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
             android:background="@drawable/hueco2">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -657,13 +752,17 @@
 
         <FrameLayout
             android:id="@+id/f65"
-            android:layout_width="52dp"
-            android:layout_height="52dp" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"/>
 
         <FrameLayout
             android:id="@+id/f66"
-            android:layout_width="52dp"
-            android:layout_height="52dp" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"/>
 
     </GridLayout>
 
@@ -672,13 +771,13 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
         android:background="@drawable/bola"
         android:gravity="center"
         android:textColor="@color/softYellow"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -688,7 +787,7 @@
         android:layout_marginStart="16dp"
         android:text="00:00:000"
         android:textColor="@color/brown"
-        android:textSize="30sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -706,8 +805,8 @@
         android:id="@+id/backMovementButtonPegSolitaire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:onClick="backMovement"
         android:text="Back"
         app:layout_constraintStart_toStartOf="parent"
@@ -717,8 +816,8 @@
         android:id="@+id/restartButtonPegSolitaire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="52dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:onClick="restartGame"
         android:text="Restart"
         app:layout_constraintEnd_toEndOf="parent"

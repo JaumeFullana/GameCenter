@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Game Center</string>
+    <string-array name="order_array">
+        <item>Name</item>
+        <item>Time</item>
+        <item>Score</item>
+    </string-array>
+    <string-array name="search_array">
+        <item>Name</item>
+        <item>Score less than</item>
+        <item>Score more than</item>
+    </string-array>
+    <string-array name="search_game">
+        <item>2048</item>
+        <item>Peg Solitaire</item>
+    </string-array>
 </resources>

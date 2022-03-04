@@ -2,7 +2,6 @@ package com.cifpfbmoll.gamepegsolitaire;
 
 public class TablePegSolitaire {
 
-    //-1 not available, 0 occupied, 1 free
     private int [][] cells;
     private int [][] cellsCopy;
     private int balls;
@@ -44,6 +43,7 @@ public class TablePegSolitaire {
 
     /**
      * Initialitzes the matrix and set it like an english board peg solitaire.
+     * -1 not available, 0 occupied, 1 free.
      */
     public void initEnglishBoard(){
         this.cells = new int [7][7];
@@ -60,6 +60,10 @@ public class TablePegSolitaire {
         }
     }
 
+    /**
+     * Initialitzes the matrix and set it like a german board peg solitaire.
+     * -1 not available, 0 occupied, 1 free.
+     */
     public void initGermanBoard(){
         this.cells = new int [9][9];
         this.cellsCopy = new int [9][9];
@@ -77,6 +81,10 @@ public class TablePegSolitaire {
         }
     }
 
+    /**
+     * Initialitzes the matrix and set it like an european board peg solitaire.
+     * -1 not available, 0 occupied, 1 free.
+     */
     public void initEuropeanBoard(){
         this.cells = new int [7][7];
         this.cellsCopy = new int [7][7];
@@ -96,6 +104,11 @@ public class TablePegSolitaire {
         this.cells[6][6] = -1;
     }
 
+    /**
+     * copy a int matrix into another int matrix
+     * @param originalCells matrix to be copied
+     * @param copyCells copied matrix
+     */
     public void copyCells(int [][] originalCells, int [][] copyCells){
         for (int i=0; i<originalCells.length; i++){
             for (int j=0; j<originalCells[i].length;j++){
@@ -118,7 +131,8 @@ public class TablePegSolitaire {
     }
 
     /**
-     * Counts the balls of the board
+     * Counts the holes of the board
+     * @return int the number of holes
      */
     public int getHolesNumber(){
         int holes=0;
@@ -152,6 +166,9 @@ public class TablePegSolitaire {
         this.balls--;
     }
 
+    /**
+     * Method that returns the cells matrix to the state it was before the last movement
+     */
     public void redoMovement(){
         this.getCells()[this.cellAfterMovement[0]][this.cellAfterMovement[1]] = 1;
         this.getCells()[this.cellBeforeMovement[0]][this.cellBeforeMovement[1]] = 0;
@@ -190,11 +207,10 @@ public class TablePegSolitaire {
 
     /**
      * Method that check if the game is over. Returns -1 if is finished and the player has lost,
-     *  0 if the game is still playable or 1 if the game is finished and the played wined.
-     * @return int -1 finished and lost, 0 still playable, 1 finished and wined
+     *  0 if the game is still playable or 1 if the game is finished and the played won.
+     * @return int -1 finished and lost, 0 still playable, 1 finished and won
      */
     public int isFinished(){
-        //0 still playable, -1 finished lose, 1 finished win
         int state=-1;
         int ballsCounter=0;
         int [] midlePosition;
@@ -223,10 +239,8 @@ public class TablePegSolitaire {
                             posiblePosition[0]=i;
                             posiblePosition[1]=j-2;
                         }
-                        //Check if the index aren't out of bounds
                         if (posiblePosition[0]<this.getCells().length && posiblePosition[0]>-1
-                            && posiblePosition[1]<this.getCells()[i].length && posiblePosition[1]>-1) {
-
+                                && posiblePosition[1]<this.getCells()[i].length && posiblePosition[1]>-1) {
                             midlePosition = this.checkMovement(realPosition, posiblePosition);
                             if(midlePosition[0]!=-1){
                                 state=0;

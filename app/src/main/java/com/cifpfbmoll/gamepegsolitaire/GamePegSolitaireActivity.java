@@ -1,8 +1,11 @@
 package com.cifpfbmoll.gamepegsolitaire;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.DragEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,10 +19,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.cifpfbmoll.Utils.DataBaseAssistant;
 import com.cifpfbmoll.game2048.Game2048Activity;
 import com.cifpfbmoll.gamecenter.R;
 import com.cifpfbmoll.Utils.Timer;
 import com.cifpfbmoll.Utils.TimerInterface;
+import com.cifpfbmoll.gamecenter.RecordsActivity;
+import com.cifpfbmoll.gamecenter.Score;
+import com.cifpfbmoll.gamecenter.UserSettingsActivity;
 
 import java.text.SimpleDateFormat;
 
@@ -32,45 +39,56 @@ public class GamePegSolitaireActivity extends AppCompatActivity implements Timer
     private TextView timerView;
     private boolean started;
     private Timer timer;
-    private int selectedMode;
+    private String selectedMode;
+    private MediaPlayer dragDropSound;
 
     public TablePegSolitaire getTable() {
         return table;
     }
 
+    /**
+     * Overrided method, create all the necessary things to start the game.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        selectedMode = 3;
+        selectedMode = this.getIntent().getStringExtra("MODE");
+        if (selectedMode == null){
+            selectedMode = "English";
+        }
 
-        if (selectedMode == 1) {
+        if (selectedMode.equals("English")) {
             setContentView(R.layout.activity_game_peg_solitaire_english);
             this.table = new TablePegSolitaire();
             table.initEnglishBoard();
         }
-        else if (selectedMode == 2) {
+        else if (selectedMode.equals("German")) {
             setContentView(R.layout.activity_game_peg_solitaire_german);
             this.table = new TablePegSolitaire();
             table.initGermanBoard();
         }
-        else if (selectedMode == 3) {
+        else if (selectedMode.equals("European")) {
             setContentView(R.layout.activity_game_peg_solitaire_european);
             this.table = new TablePegSolitaire();
             table.initEuropeanBoard();
         }
 
-        this.timerView = (TextView)findViewById(R.id.timerPeg);
-        this.backButton = ((Button)findViewById(R.id.backMovementButtonPegSolitaire));
+        this.dragDropSound = MediaPlayer.create(this,R.raw.drag_drop);
+        this.timerView = findViewById(R.id.timerPeg);
+        this.backButton = findViewById(R.id.backMovementButtonPegSolitaire);
         table.countBalls();
         this.started = false;
         this.timer = new Timer(this, true);
-        ballCounter = (TextView)findViewById(R.id.balls);
+        ballCounter = findViewById(R.id.balls);
         ballCounter.setText(Integer.toString(this.table.getBalls()));
         this.addDragListeners(this.getTable());
         this.addTouchListeners();
     }
 
+    /**
+     * Overrided method.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -79,6 +97,9 @@ public class GamePegSolitaireActivity extends AppCompatActivity implements Timer
         return true;
     }
 
+    /**
+     * Overrided method, call diferents methods depending on the item selected.
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         boolean result=true;
@@ -88,10 +109,7 @@ public class GamePegSolitaireActivity extends AppCompatActivity implements Timer
                 finish();
                 break;
             case R.id.settings_menu_bar:
-
-                break;
-            case R.id.help_menu_bar:
-
+                openSettings();
                 break;
             case R.id.records:
                 openRecords();
@@ -100,6 +118,23 @@ public class GamePegSolitaireActivity extends AppCompatActivity implements Timer
                 result=super.onOptionsItemSelected(item);
         }
         return result;
+    }
+
+    /**
+     * Overrided method. Restarts the game if the game mode was changed in the settings screen.
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                String mode = data.getStringExtra("MODE");
+                if (mode != null && !mode.equals(this.selectedMode)) {
+                    selectedMode = mode;
+                    this.restartGame(null);
+                }
+            }
+        }
     }
 
     /**
@@ -121,14 +156,12 @@ public class GamePegSolitaireActivity extends AppCompatActivity implements Timer
                                 timer.start();
                             }
                             boolean correct=true;
-                            //get the view I saved on the local state when drag started(is a button)
                             View v = (View) dragEvent.getLocalState();
                             if (dragEvent.getAction() == DragEvent.ACTION_DROP) {
-                                //when the ball is droped correctly(a listener catch the event))
                                 correct=dropBall(v, fl);
                             } else if(dragEvent.getAction()==DragEvent.ACTION_DRAG_ENDED){
-                                //when the drag ends, this always happens.
                                 v.setVisibility(View.VISIBLE);
+                                dragDropSound.start();
                             }
                             return correct;
                         }
@@ -148,6 +181,7 @@ public class GamePegSolitaireActivity extends AppCompatActivity implements Timer
             b32.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
+                    dragDropSound.start();
                     dragBall(view);
                     return true;
                 }
@@ -184,13 +218,18 @@ public class GamePegSolitaireActivity extends AppCompatActivity implements Timer
             if (state!=0){
                 this.timer.pause();
                 this.backButton.setEnabled(false);
+                this.saveRecord();
                 this.announceResult(state);
             }
         }
+
         return correct;
     }
 
-    //no comment because we arent gona show the result in a toast, we are gonna change this method logic
+    /**
+     * Announce the result of the game in a toast.
+     * @param state int tells if the game is lost or won
+     */
     public void announceResult(int state){
         String resultado="";
         if (state==1){
@@ -204,15 +243,12 @@ public class GamePegSolitaireActivity extends AppCompatActivity implements Timer
     }
 
     /**
-     * Method that strat the drag action. Create a DragShadow that is copy of the button that the method
+     * Method that starts the drag action. Create a DragShadow that is copy of the button that the method
      * is dragging. Then start the drag and set the button that is moving to inivisible.
-     * @param view
+     * @param view the ball view, to create the shadow of the drag from it and to send to the new position.
      */
     public void dragBall(View view){
-        //ToneGenerator tg=new ToneGenerator(AudioManager.STREAM_MUSIC,100);
-        //tg.startTone(ToneGenerator.TONE_SUP_ERROR,200);
-
-        View.DragShadowBuilder shadow= new View.DragShadowBuilder(view);
+        View.DragShadowBuilder shadow = new View.DragShadowBuilder(view);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             view.startDragAndDrop(null,shadow,view,View.DRAG_FLAG_OPAQUE);
         } else{
@@ -222,9 +258,9 @@ public class GamePegSolitaireActivity extends AppCompatActivity implements Timer
     }
 
     /**
-     * Method that recives a frame layout from the gridLayout that represents the board of the peg
+     * Method that recives a frame layout from the gridLayout that represents a cell of the board of the peg
      * solitaire and returns its position.
-     * @param fl FrameLayout
+     * @param fl FrameLayout cell of the board
      * @return the position of the FrameLayout
      */
     public int[] getFrameLayoutPosition(FrameLayout fl){
@@ -248,6 +284,10 @@ public class GamePegSolitaireActivity extends AppCompatActivity implements Timer
         return findViewById(id);
     }
 
+    /**
+     * Change the text of the timerView.
+     * @param currentTime value to be setted as the text of the view, after being formatted.
+     */
     public void updateTimer(Long currentTime){
         SimpleDateFormat sdf=new SimpleDateFormat("mm:ss:SSS");
         runOnUiThread(new Runnable() {
@@ -257,16 +297,48 @@ public class GamePegSolitaireActivity extends AppCompatActivity implements Timer
         });
     }
 
+    /**
+     * Starts the RecordsActivity.
+     */
     public void openRecords(){
-        Intent intent=new Intent(this, RecordsPegSolitaireActivity.class);
+        Intent intent=new Intent(this, RecordsActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Starts the Game2048Activity.
+     */
     public void open2048(){
         Intent intent=new Intent(this, Game2048Activity.class);
         startActivity(intent);
     }
 
+    /**
+     * Starts the UserSettingsActivity.
+     */
+    private void openSettings() {
+        Intent intent=new Intent(this, UserSettingsActivity.class);
+        intent.putExtra("game","Peg Solitaire");
+        intent.putExtra("mode", selectedMode);
+        startActivityForResult(intent, 1);
+    }
+
+    /**
+     * Saves the result of the game in the data base.
+     */
+    private void saveRecord() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String userName = preferences.getString("userName", "Wrong.User.Name");
+        int puntuacion=Integer.parseInt(ballCounter.getText().toString());
+        String time= timerView.getText().toString();
+        DataBaseAssistant db=new DataBaseAssistant(this);
+        db.addScore(new Score(puntuacion, time, "Peg Solitaire", selectedMode, userName));
+    }
+
+    /**
+     * Method that returns the board to the state it was before the last movement
+     * @param view view that should be passed to allow to call this method from a button in a hardcoded way
+     */
     public void backMovement(View view){
         if(this.getTable().getCellDeleted()!=null) {
             this.getTable().redoMovement();
@@ -282,34 +354,42 @@ public class GamePegSolitaireActivity extends AppCompatActivity implements Timer
         }
     }
 
+    /**
+     * Method that restarts the game.
+     * @param view view that should be passed to allow to call this method from a button in a hardcoded way
+     */
     public void restartGame(View view){
-        if (selectedMode == 1) {
+        if (selectedMode == null || selectedMode.equals("English")) {
             setContentView(R.layout.activity_game_peg_solitaire_english);
             this.table = new TablePegSolitaire();
             table.initEnglishBoard();
         }
-        else if (selectedMode == 2) {
+        else if (selectedMode.equals("German")) {
             setContentView(R.layout.activity_game_peg_solitaire_german);
             this.table = new TablePegSolitaire();
             table.initGermanBoard();
         }
-        else if (selectedMode == 3) {
+        else if (selectedMode.equals("European")) {
             setContentView(R.layout.activity_game_peg_solitaire_european);
             this.table = new TablePegSolitaire();
             table.initEuropeanBoard();
         }
-        this.backButton = ((Button)findViewById(R.id.backMovementButtonPegSolitaire));
+        this.backButton = findViewById(R.id.backMovementButtonPegSolitaire);
         table.countBalls();
-        this.timerView=(TextView)findViewById(R.id.timerPeg);
+        this.timerView = findViewById(R.id.timerPeg);
         this.started=false;
         this.timer.stop();
-        this.timer=new Timer(this,true);
-        ballCounter=(TextView)findViewById(R.id.balls);
+        this.timer = new Timer(this,true);
+        ballCounter = findViewById(R.id.balls);
         ballCounter.setText(Integer.toString(this.table.getBalls()));
         this.addDragListeners(this.getTable());
         this.addTouchListeners();
     }
 
+    /**
+     * Overried method. Method that is called by the Timer class everytime the timer is updated.
+     * @param time new time
+     */
     @Override
     public void onTimeUpdated(long time) {
         this.updateTimer(time);

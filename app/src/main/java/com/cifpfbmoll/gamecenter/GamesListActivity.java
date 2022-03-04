@@ -16,13 +16,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.cifpfbmoll.game2048.Game2048Activity;
-import com.cifpfbmoll.game2048.Records2048Activity;
-import com.cifpfbmoll.gamepegsolitaire.GamePegSolitaireActivity;
-import com.cifpfbmoll.gamepegsolitaire.RecordsPegSolitaireActivity;
-
 public class GamesListActivity extends AppCompatActivity {
 
+    /**
+     * Overrided method, create all the necessary things to start the activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,12 +39,14 @@ public class GamesListActivity extends AppCompatActivity {
         imageList[0]=getResources().getIdentifier("icon_peg_solitaire","drawable", getPackageName());
         imageList[1]=getResources().getIdentifier("icon_2048","drawable", getPackageName());
 
-        RecyclerView list=(RecyclerView)findViewById(R.id.recyclerViewGames);
+        RecyclerView list = findViewById(R.id.recyclerViewGames);
         list.setLayoutManager(new LinearLayoutManager(this));
-        list.setAdapter(new CustomAdapter(textList, imageList, descriptionList));
-
+        list.setAdapter(new CustomGamesAdapter(textList, imageList, descriptionList, this));
     }
 
+    /**
+     * Overrided method.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -55,21 +55,18 @@ public class GamesListActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Overrided method, call diferents methods depending on the item selected.
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         boolean result=true;
         switch(item.getItemId()){
             case R.id.settings_menu_bar:
-
+                this.openSettings();
                 break;
-            case R.id.help_menu_bar:
-
-                break;
-            case R.id.records_2048:
-                openRecords2048();
-                break;
-            case R.id.records_peg_solitaire:
-                openRecordsPegSolitaire();
+            case R.id.records:
+                this.openRecords();
                 break;
             default:
                 result=super.onOptionsItemSelected(item);
@@ -77,26 +74,32 @@ public class GamesListActivity extends AppCompatActivity {
         return result;
     }
 
-    public void openRecords2048(){
-        Intent intent=new Intent(this, Records2048Activity.class);
+    /**
+     * Starts the UserSettingsActivity.
+     */
+    public void openSettings(){
+        Intent intent=new Intent(this, UserSettingsActivity.class);
         startActivity(intent);
     }
 
-    public void openRecordsPegSolitaire(){
-        Intent intent=new Intent(this, RecordsPegSolitaireActivity.class);
+    /**
+     * Starts the RecordsActivity.
+     */
+    public void openRecords(){
+        Intent intent=new Intent(this, RecordsActivity.class);
         startActivity(intent);
     }
 }
 
-class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
+class CustomGamesAdapter extends RecyclerView.Adapter<CustomGamesAdapter.ViewHolder> {
 
     private String[] textList;
     private int[] imageList;
     private String[] descriptionList;
+    private GamesListActivity activity;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView imageViewCard;
-        private final TextView descriptionViewCard;
         private final ConstraintLayout constraintLayout;
         private String game;
 
@@ -105,7 +108,6 @@ class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
             constraintLayout = (ConstraintLayout) view.findViewById(R.id.gameConstraintLayout);
             imageViewCard = (ImageView) view.findViewById(R.id.imageViewCard);
-            descriptionViewCard = (TextView) view.findViewById(R.id.descriptionCardView);
         }
 
         public ImageView getImageViewCard() {
@@ -116,20 +118,22 @@ class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
             return constraintLayout;
         }
 
-        public TextView getDescriptionViewCard() { return descriptionViewCard; }
-
         public String getGame() { return game; }
 
         public void setGame(String game) { this.game = game; }
     }
 
 
-    public CustomAdapter(String[] textList, int [] imageList, String[] descriptionList) {
+    public CustomGamesAdapter(String[] textList, int [] imageList, String[] descriptionList, GamesListActivity activity) {
         this.textList = textList;
         this.imageList = imageList;
         this.descriptionList = descriptionList;
+        this.activity = activity;
     }
 
+    /**
+     * Overrided method. When the listView is clicked a dialog to select the game mode is opened.
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
@@ -137,42 +141,42 @@ class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
         ViewHolder viewHolder = new ViewHolder(view);
 
-        //mirar de crear es listener a onCreate, li posam a sa recycle view directement. Pensa que
-        // es onItemTouchListener
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent=null;
-
                 if (viewHolder.getGame().equals("2048")) {
-                    intent = new Intent(((GamesListActivity) view.getContext()), Game2048Activity.class);
+                    new SelectModeDialog("2048",new String[]{"3x3","4x4","5x5"})
+                            .show(activity.getSupportFragmentManager(),"2048");
                 }
                 else if (viewHolder.getGame().equals("Peg Solitaire")){
-                    intent = new Intent(((GamesListActivity) view.getContext()), GamePegSolitaireActivity.class);
+                    new SelectModeDialog("Peg Solitaire", new String[]{"English","German","European"})
+                            .show(activity.getSupportFragmentManager(),"Peg Solitaire");
                 }
-
-                ((GamesListActivity)view.getContext()).startActivity(intent);
             }
         });
 
         return viewHolder;
     }
 
+    /**
+     * Overrided method.
+     */
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-        if (textList[position]=="2048"){
+        if (textList[position].equals("2048")){
             viewHolder.getImageViewCard().setImageResource(R.drawable.img2048card);
         }
-        else if(textList[position]=="Peg Solitaire"){
+        else if(textList[position].equals("Peg Solitaire")){
             viewHolder.getImageViewCard().setImageResource(R.drawable.peg_solitaire_card);
         }
         viewHolder.setGame(textList[position]);
         viewHolder.getConstraintLayout().setBackgroundResource(imageList[position]);
-        //viewHolder.getDescriptionViewCard().setText(descriptionList[position]);
     }
 
     @Override
+    /**
+     * Overrided method.
+     */
     public int getItemCount() {
         return textList.length;
     }

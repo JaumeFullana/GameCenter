@@ -5,13 +5,7 @@
         android:id="@+id/settings_menu_bar"
     android:title="Settings"></item>
     <item
-        android:id="@+id/help_menu_bar"
-        android:title="Help"></item>
-    <item
-        android:id="@+id/records_2048"
-        android:title="Records 2048"></item>
-    <item
-        android:id="@+id/records_peg_solitaire"
-        android:title="Records Peg Solitaire"></item>
+        android:id="@+id/records"
+        android:title="Records"></item>
 
     </menu>

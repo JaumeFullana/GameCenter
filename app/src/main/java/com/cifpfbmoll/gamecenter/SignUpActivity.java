@@ -23,11 +23,13 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText editTextPassword2;
     private DataBaseAssistant db;
 
+    /**
+     * Overrided method, create all the necessary things to start the game.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
         this.signUpButton=findViewById(R.id.buttonSignUp2);
         this.editTextUserName=findViewById(R.id.editSignUpUser);
         this.editTextPassword=findViewById(R.id.editSignUpPassword);
@@ -37,38 +39,49 @@ public class SignUpActivity extends AppCompatActivity {
         this.signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (editTextUserName.getText().toString().isEmpty() ||
-                        editTextPassword.getText().toString().isEmpty() ||
-                        editTextPassword2.getText().toString().isEmpty()){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
-                    builder.setMessage("All fields must be filled")
-                            .setTitle("ERROR");
-                    builder.create().show();
-                }
-                else if (!editTextPassword.getText().toString().equals(editTextPassword2.getText().toString())){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
-                    builder.setMessage("The passwords aren't equals")
-                            .setTitle("ERROR");
-                    builder.create().show();
-                } else {
-                    boolean inserted=db.addUser(editTextUserName.getText().toString(), editTextPassword.getText().toString());
-                    if (inserted){
-                        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                        Toast toast = Toast.makeText(SignUpActivity.this, "Registered", Toast.LENGTH_SHORT);
-                        toast.show();
-                        finish();
-                    } else {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
-                        builder.setMessage("This user alredy exist.")
-                                .setTitle("ERROR");
-                        builder.create().show();
-                    }
-                }
+                signUp();
             }
         });
     }
 
+    /**
+     * Method to sign up a user in the game center, the user name can't be repeated and the passwords
+     * have to be equals.
+     */
+    private void signUp() {
+        if (editTextUserName.getText().toString().isEmpty() ||
+                editTextPassword.getText().toString().isEmpty() ||
+                editTextPassword2.getText().toString().isEmpty()){
+            AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
+            builder.setMessage("All fields must be filled")
+                    .setTitle("ERROR");
+            builder.create().show();
+        }
+        else if (!editTextPassword.getText().toString().equals(editTextPassword2.getText().toString())){
+            AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
+            builder.setMessage("The passwords aren't equals")
+                    .setTitle("ERROR");
+            builder.create().show();
+        } else {
+            boolean inserted=db.addUser(editTextUserName.getText().toString().toLowerCase(), editTextPassword.getText().toString());
+            if (inserted){
+                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                startActivity(intent);
+                Toast toast = Toast.makeText(SignUpActivity.this, "Registered", Toast.LENGTH_SHORT);
+                toast.show();
+                finish();
+            } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
+                builder.setMessage("This user alredy exist.")
+                        .setTitle("ERROR");
+                builder.create().show();
+            }
+        }
+    }
+
+    /**
+     * Overrided method. Close the keyboard when another part of the screen is touched.
+     */
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (getCurrentFocus() != null) {

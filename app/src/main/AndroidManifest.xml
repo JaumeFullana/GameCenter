@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.cifpfbmoll.gamecenter">
+    package="com.cifpfbmoll.gamecenter" >
 
     <application
         android:allowBackup="true"
@@ -8,25 +8,24 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/jack_games_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GameCenter">
+        android:theme="@style/Theme.GameCenter" >
+        <activity
+            android:name=".RecordsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".UserSettingsActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SignUpActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true" />
-        <activity
-            android:name="com.cifpfbmoll.game2048.Records2048Activity"
-            android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.cifpfbmoll.game2048.Game2048Activity"
-            android:configChanges="orientation"
-            android:exported="true"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.cifpfbmoll.gamepegsolitaire.RecordsPegSolitaireActivity"
             android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="portrait" />
@@ -44,7 +43,7 @@
             android:name=".SplashActivity"
             android:configChanges="orientation"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

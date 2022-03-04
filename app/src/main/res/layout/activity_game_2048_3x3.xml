@@ -17,20 +17,23 @@
         android:layout_marginTop="5dp"
         android:text="00:00:000"
         android:textColor="@color/brown"
-        android:textSize="30sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <GridLayout
         android:id="@+id/gridLayout2048"
-        android:layout_width="362dp"
-        android:layout_height="362dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
-        android:background="@color/margins"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/grid_2048_3x3"
         android:columnCount="3"
         android:padding="4dp"
         android:rowCount="3"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,8 +41,8 @@
 
         <TextView
             android:id="@+id/p00"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
@@ -51,8 +54,8 @@
 
         <TextView
             android:id="@+id/p01"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
@@ -64,8 +67,8 @@
 
         <TextView
             android:id="@+id/p02"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
@@ -78,8 +81,8 @@
 
         <TextView
             android:id="@+id/p10"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
@@ -91,8 +94,8 @@
 
         <TextView
             android:id="@+id/p11"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
@@ -104,8 +107,8 @@
 
         <TextView
             android:id="@+id/p12"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
@@ -117,8 +120,8 @@
 
         <TextView
             android:id="@+id/p20"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
@@ -130,8 +133,8 @@
 
         <TextView
             android:id="@+id/p21"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
@@ -143,8 +146,8 @@
 
         <TextView
             android:id="@+id/p22"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="4dp"
@@ -168,9 +171,11 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="151dp"
-        android:layout_height="84dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/rounded_borders"
         android:backgroundTint="@color/gridBackground"
         android:orientation="vertical"
@@ -186,7 +191,7 @@
             android:gravity="center"
             android:text="Puntuacion"
             android:textColor="@color/brown"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -197,7 +202,7 @@
             android:gravity="center"
             android:text="0"
             android:textColor="@color/white"
-            android:textSize="34sp"
+            android:textSize="30sp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -205,8 +210,8 @@
         android:id="@+id/backMovementButton2048"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:onClick="backMovement"
         android:text="Back"
         app:layout_constraintStart_toStartOf="parent"
@@ -216,8 +221,8 @@
         android:id="@+id/restartButton2048"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="52dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:onClick="restartGame"
         android:text="Restart"
         app:layout_constraintEnd_toEndOf="parent"

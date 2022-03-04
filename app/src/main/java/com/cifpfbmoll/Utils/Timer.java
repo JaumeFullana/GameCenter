@@ -22,6 +22,9 @@ public class Timer implements Runnable{
         return time;
     }
 
+    /**
+     * Starts the timer. If this timer wasn't used before, starts the thread where the timer runs.
+     */
     public void start(){
         this.timerPaused=false;
         this.timerRunning=true;
@@ -31,21 +34,33 @@ public class Timer implements Runnable{
         }
     }
 
+    /**
+     * Pause the timer.
+     */
     public void pause(){
         timerPaused=true;
         timeSaved=time;
     }
 
+    /**
+     * Resume the timer, used after a pause.
+     */
     public void resume(){
         timerPaused=false;
         startTime=System.currentTimeMillis();
     }
 
+    /**
+     * Stops the timer, not allowing to resume. You have to call start again to run this timer agin.
+     */
     public void stop(){
         timerPaused=true;
         timerRunning=false;
     }
 
+    /**
+     * Overrided method. Method were the main logic of the timer happens.
+     */
     @Override
     public void run() {
         time=0;
