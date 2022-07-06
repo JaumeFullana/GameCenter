@@ -30,6 +30,6 @@ There are a lot of things to pay attention in this application, some of the most
 
 -	Coding best practices. Trying to do the application using the best practices possible, respecting the Object-oriented programming. Not doing super-long methods, separating the different methods correctly, and doing the same with the classes. Commenting all the methods to help understanding the code. Trying to do the cleanest code possible. Separating the related classes in different packages. Making the classes as separated as possible of the others, allowing to reuse different classes in different cases (Timer used in both games, Animator2048 used in any mode of the game 2048), and separating the back-end from the front-end as much as possible allowing to use the same class in different layouts (the 2048 classes and the peg solitaire classes are used in 3 different layouts each one).
 
-# AUTOR:
+# AUTHOR:
 
 Jaume Fullana Piza
